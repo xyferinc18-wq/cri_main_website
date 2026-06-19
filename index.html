@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  =====================================================================
+  CONSOLIDATED ROBUST INC. (CRI) - CORPORATE WEBSITE
+  =====================================================================
+  Built with: Pure HTML5, CSS3, vanilla JavaScript (no frameworks)
+
+  HOW TO RUN LOCALLY:
+  -------------------
+  Option A - Just open the file:
+    Double-click index.html (works for most content, but Spline iframe
+    may need a local server due to CORS).
+  Option B - Use a local server (recommended):
+    1. XAMPP/WAMP/Laragon: Place this folder inside htdocs/ or www/
+       then visit http://localhost/cri-website/
+    2. VS Code Live Server: Right-click index.html → "Open with Live Server"
+    3. Python (if installed): cd into this folder and run
+       "python -m http.server 8000" then visit http://localhost:8000
+
+  HOW TO DEPLOY TO GODADDY:
+  -------------------------
+  1. Log in to your GoDaddy cPanel.
+  2. Open "File Manager" and navigate to /public_html/
+  3. Upload these files/folders (keep structure intact):
+       - index.html
+       - style.css
+       - script.js
+       - /assets (including /assets/images and assets/logo.png)
+  4. Visit your domain (e.g., https://crobust.com/) — done.
+  NOTE: All paths are RELATIVE, so no further edits are needed.
+
+  WHERE TO EDIT CONTENT LATER:
+  ----------------------------
+  - Text content (about, services, projects, contact): edit index.html
+  - Colors, fonts, spacing, animations: edit style.css (top of file
+    has all CSS variables under :root)
+  - Counters, scroll behavior, menu logic: edit script.js
+  - Logo or images: replace files in /assets/
+  =====================================================================
+-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO META TAGS -->
+  <title>Consolidated Robust Inc. (CRI) — Fire Alarm, CCTV, Electrical & Auxiliary Systems Philippines</title>
+  <meta name="description" content="Consolidated Robust Inc. (CRI) is a leading Philippine engineering company specializing in Fire Detection & Alarm Systems (FDAS), CCTV, electrical works, busduct systems, and auxiliary systems. Trusted by Ayala, Filinvest, and top developers since 1988." />
+  <meta name="keywords" content="CRI, Consolidated Robust, Fire Alarm Philippines, FDAS, Hochiki, CCTV, Busduct, Electrical Contractor, Quezon City, Auxiliary Systems, PA/BGM, Amperes" />
+  <meta name="author" content="Consolidated Robust Inc." />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Consolidated Robust Inc. — Engineering & Security Solutions" />
+  <meta property="og:description" content="Trusted Philippine engineering company since 1988. FDAS, CCTV, Electrical & Auxiliary Systems for major developers." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/logo.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+
+  <!-- Google Fonts: Inter (body) + Poppins (display) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome icons (CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Our stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Spline: preconnect only — viewer JS loads inside the iframe, not here -->
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="preconnect" href="https://prod.spline.design" />
+
+  <!-- Google reCAPTCHA v2 -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+</head>
+
+<body>
+  <!-- ==================== SPLASH SCREEN ==================== -->
+  <div id="splash" aria-hidden="true">
+    <img src="assets/logo.png" alt="CRI" id="splash-logo" />
+    <p id="splash-tagline">Engineered for Safety, Built for Trust</p>
+    <div id="splash-bar"><div id="splash-bar-fill"></div></div>
+  </div>
+
+  <!-- ==================== STICKY NAVBAR ==================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-brand" aria-label="Consolidated Robust Inc. home">
+        <img src="assets/logo.png" alt="CRI Logo" class="nav-logo" />
+        <div class="nav-brand-text">
+          <span class="nav-brand-name">CONSOLIDATED ROBUST INC.</span>
+          <span class="nav-brand-tag">Engineering &amp; Security Solutions</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#partners" class="nav-link">Partners</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#why" class="nav-link">Why Us</a>
+        <a href="#contact" class="nav-link nav-cta">Contact</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero" id="home">
+    <!-- Decorative glow blobs -->
+    <div class="hero-glow hero-glow-1" aria-hidden="true"></div>
+    <div class="hero-glow hero-glow-2" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+
+    <div class="hero-container">
+      <div class="hero-content reveal">
+        <span class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          Since 1988 · Trusted by Ayala &amp; Filinvest
+        </span>
+        <h1 class="hero-title">
+          Built to <span class="text-gradient">Protect.</span><br />Wired to Perform.
+        </h1>
+        <p class="hero-tagline">Engineered for Safety, Built for Trust</p>
+        <p class="hero-sub">
+          Consolidated Robust Inc. is a Philippine leader in Fire Detection &amp; Alarm Systems,
+          CCTV, electrical works, busduct, and auxiliary systems &mdash; powering the country's
+          most iconic high-rises, hotels, and industrial plants.
+        </p>
+        <div class="hero-cta-row">
+          <a href="#contact" class="btn btn-primary">
+            Get a Quote <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="#projects" class="btn btn-ghost">
+            View Projects
+          </a>
+        </div>
+
+        <!-- Quick stats -->
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="stat-num"><span class="counter" data-target="37">0</span>+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-num"><span class="counter" data-target="150">0</span>+</div>
+            <div class="stat-label">Projects Delivered</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-num"><span class="counter" data-target="10">0</span>+</div>
+            <div class="stat-label">Global Partners</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Spline animated cube — loaded in an iframe so it has its own
+           document context and CSP, completely isolating the viewer's
+           unsafe-eval / WASM needs from the main page security policy -->
+      <div class="hero-visual" aria-hidden="true" style="min-height:560px; max-width:980px;">
+        <div class="visual-ring visual-ring-1"></div>
+        <div class="visual-ring visual-ring-2"></div>
+        <div class="visual-glow"></div>
+        <div class="spline-frame">
+          <iframe
+            src="spline-scene/index.html"
+            title="3D animated cube"
+            scrolling="no"
+            frameborder="0"
+            allowtransparency="true"
+            allow="autoplay"
+            loading="eager"
+            style="display:block; width:100%; height:100%; min-height:560px; border:none; background:transparent;">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <a href="#about" class="scroll-hint" aria-label="Scroll down">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- ==================== ABOUT SECTION ==================== -->
+  <section class="section section-light" id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">About the Company</span>
+        <h2 class="section-title">Three decades of building the Philippines, system by system.</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            <strong>Robust Electric Distributors</strong> was established in <strong>1988</strong>
+            as a single proprietorship and later incorporated into <strong>Robust Inc.</strong> &mdash;
+            a dynamic corporation that imports and services electrical construction materials
+            and lighting products from around the world for fast-developing markets like the Philippines.
+          </p>
+          <p>
+            We have been a major contributor to the success of well-known office and condominium
+            buildings, commercial malls, and industrial plants. Reliable corporate clients
+            including the <strong>Ayala Group</strong>, <strong>Filinvest Corporation</strong>,
+            and leading architects and engineers trust us to deliver dependable building systems.
+          </p>
+          <p>
+            Today, with new investors expanding operational capacity, the company is known as
+            <strong>Consolidated Robust Inc. (CRI)</strong> &mdash; carrying premium product lines
+            including HOCHIKI Fire Alarm Systems, AMPERES PA/BGM, DAVIS Floor Boxes, and UL Linear
+            Heat Detection Cable, alongside our long-running distributorships.
+          </p>
+
+          <div class="about-tags">
+            <span class="chip"><i class="fa-solid fa-fire-flame-curved"></i> FDAS</span>
+            <span class="chip"><i class="fa-solid fa-video"></i> CCTV</span>
+            <span class="chip"><i class="fa-solid fa-bolt"></i> Electrical</span>
+            <span class="chip"><i class="fa-solid fa-network-wired"></i> Auxiliary</span>
+            <span class="chip"><i class="fa-solid fa-volume-high"></i> PA / BGM</span>
+            <span class="chip"><i class="fa-solid fa-screwdriver-wrench"></i> Maintenance</span>
+          </div>
+        </div>
+
+        <div class="about-card reveal">
+          <div class="about-card-row">
+            <i class="fa-solid fa-building-shield"></i>
+            <div>
+              <h4>Importer · Wholesaler · Retailer</h4>
+              <p>End-to-end procurement and supply across the country.</p>
+            </div>
+          </div>
+          <div class="about-card-row">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <div>
+              <h4>Services · Maintenance · Installation</h4>
+              <p>Licensed engineers and skilled technical teams on every project.</p>
+            </div>
+          </div>
+          <div class="about-card-row">
+            <i class="fa-solid fa-certificate"></i>
+            <div>
+              <h4>Fully Licensed &amp; Accredited</h4>
+              <p>SEC, BIR, PCAB Regular Contractor's License, QC Mayor's Permit.</p>
+            </div>
+          </div>
+          <div class="about-card-row">
+            <i class="fa-solid fa-globe"></i>
+            <div>
+              <h4>Global Principal Suppliers</h4>
+              <p>Japan · Malaysia · China · USA · Switzerland · Italy · UK.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICES SECTION ==================== -->
+  <section class="section section-tinted" id="services">
+    <div class="wave-top" aria-hidden="true"></div>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">What We Do</span>
+        <h2 class="section-title">A full stack of engineering &amp; life-safety solutions.</h2>
+        <p class="section-sub">From design and supply to installation and preventive maintenance &mdash; one team for the entire system lifecycle.</p>
+      </div>
+
+      <div class="services-grid">
+        <a href="services/fdas.html" class="service-card reveal">
+          <div class="service-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+          <h3>Fire Detection &amp; Alarm Systems (FDAS)</h3>
+          <p>Hochiki, Honeywell, Morley-IAS, and System Sensor solutions engineered to NFPA standards for hotels, condominiums, malls, and industrial plants.</p>
+          <span class="service-meta">Hochiki · Honeywell · Morley-IAS</span>
+        </a>
+        <a href="services/cctv.html" class="service-card reveal">
+          <div class="service-icon"><i class="fa-solid fa-video"></i></div>
+          <h3>CCTV &amp; Surveillance</h3>
+          <p>IP and analog video surveillance design, supply, and installation &mdash; from single buildings to enterprise campuses with central monitoring.</p>
+          <span class="service-meta">IP · NVR · Central Monitoring</span>
+        </a>
+        <a href="services/electrical.html" class="service-card reveal">
+          <div class="service-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3>Electrical Works</h3>
+          <p>Power distribution, lighting, HITACHI Multi-B busduct systems, and lightning protection for high-rises and commercial developments.</p>
+          <span class="service-meta">Busduct · Lighting · Distribution</span>
+        </a>
+        <a href="services/auxiliary.html" class="service-card reveal">
+          <div class="service-icon"><i class="fa-solid fa-network-wired"></i></div>
+          <h3>Auxiliary Systems</h3>
+          <p>Structured cabling, intercom, door access, PABX, voice &amp; data &mdash; the low-voltage backbone of modern smart buildings.</p>
+          <span class="service-meta">ELV · Data · Access Control</span>
+        </a>
+        <a href="services/fire-suppression.html" class="service-card reveal">
+          <div class="service-icon"><i class="fa-solid fa-droplet"></i></div>
+          <h3>Fire Suppression Systems</h3>
+          <p>Clean-agent and water-based suppression including UL Linear Heat Detection Cable for data centers, server rooms, and critical assets.</p>
+          <span class="service-meta">Clean Agent · Linear Heat</span>
+        </a>
+        <a href="services/preventive-maintenance.html" class="service-card reveal">
+          <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>Preventive Maintenance</h3>
+          <p>Scheduled inspection, testing, and certification of life-safety systems &mdash; led by PRC-licensed engineers to keep buildings compliant.</p>
+          <span class="service-meta">Inspection · Testing · Reporting</span>
+        </a>
+        <a href="services/pa-bgm.html" class="service-card reveal">
+          <div class="service-icon"><i class="fa-solid fa-volume-high"></i></div>
+          <h3>Public Address &amp; BGM</h3>
+          <p>Amperes public address and background music systems for malls, schools, transport hubs, and corporate campuses.</p>
+          <span class="service-meta">Amperes · Voice Evacuation</span>
+        </a>
+        <a href="services/installation.html" class="service-card reveal">
+          <div class="service-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+          <h3>Installation &amp; Maintenance</h3>
+          <p>Turn-key project execution with dedicated PIC engineers, safety officers, and warehouse logistics &mdash; on schedule, on spec.</p>
+          <span class="service-meta">Turn-Key · Project-Managed</span>
+        </a>
+      </div>
+    </div>
+    <div class="wave-bottom" aria-hidden="true"></div>
+  </section>
+
+  <!-- ==================== PARTNERS / SUPPLIERS ==================== -->
+  <section class="section section-light" id="partners">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">Suppliers &amp; Partners</span>
+        <h2 class="section-title">Backed by world-class brands across three continents.</h2>
+        <p class="section-sub">We hold exclusive distributorships and long-standing partnerships with manufacturers in Japan, Malaysia, China, the USA, and across Europe.</p>
+      </div>
+
+      <h3 class="sub-head reveal">Principal Suppliers</h3>
+      <div class="partners-grid">
+        <a href="brands/hochiki.html" class="partner-card reveal">
+          <div class="partner-logo" data-name="HOCHIKI"><img src="https://www.hochikieurope.com/furniture/logo.png" alt="HOCHIKI" loading="lazy" onload="this.parentElement.dataset.loaded=''" onerror="this.style.display='none'" /></div>
+          <div class="partner-flag"><i class="fa-solid fa-circle"></i> Japan</div>
+          <h4>HOCHIKI Corporation</h4>
+          <p>Fire alarm &amp; detection systems &mdash; Shinagawa-ken, Tokyo</p>
+        </a>
+        <a href="brands/amperes.html" class="partner-card reveal">
+          <div class="partner-logo" data-name="AMPERES"><img src="https://static.wixstatic.com/media/5266de_40b43ba55bcf4915a1ca466a3e81392a~mv2.png" alt="AMPERES" loading="lazy" onload="this.parentElement.dataset.loaded=''" onerror="this.style.display='none'" class="logo-multiply" /></div>
+          <div class="partner-flag"><i class="fa-solid fa-circle"></i> Malaysia</div>
+          <h4>AMPERES Electronics</h4>
+          <p>PA / BGM systems &mdash; Puchong, Malaysia</p>
+        </a>
+        <a href="brands/davis.html" class="partner-card reveal">
+          <div class="partner-logo" data-name="DAVIS"><img src="https://www.davis.com.my/wp-content/uploads/2018/09/Davis_Logo-small-e1536223144296.png" alt="DAVIS" loading="lazy" onload="this.parentElement.dataset.loaded=''" onerror="this.style.display='none'" /></div>
+          <div class="partner-flag"><i class="fa-solid fa-circle"></i> Malaysia</div>
+          <h4>DAVIS Malaysia</h4>
+          <p>Floor boxes &amp; wiring devices &mdash; Selangor</p>
+        </a>
+        <a href="brands/leelen.html" class="partner-card reveal">
+          <div class="partner-logo" data-name="LEELEN"><img src="assets/images/leelen.jpeg" alt="LEELEN" loading="lazy" onload="this.parentElement.dataset.loaded=''" onerror="this.style.display='none'" /></div>
+          <div class="partner-flag"><i class="fa-solid fa-circle"></i> China</div>
+          <h4>LEELEN Technology</h4>
+          <p>Audio &amp; video entry phones &mdash; Xiamen</p>
+        </a>
+      </div>
+
+      <h3 class="sub-head reveal">Business Partners</h3>
+      <div class="partners-grid">
+        <a href="brands/asenware.html" class="partner-card reveal">
+          <div class="partner-logo" data-name="ASENWARE"><img src="https://www.asenware.com/u_file/global/19_12_13/dc0806c5e4.png" alt="ASENWARE" loading="lazy" onload="this.parentElement.dataset.loaded=''" onerror="this.style.display='none'" /></div>
+          <div class="partner-flag"><i class="fa-solid fa-circle"></i> China</div>
+          <h4>ASENWARE</h4>
+          <p>Fire alarm panels &mdash; Shenzhen</p>
+        </a>
+        <a href="brands/yarward.html" class="partner-card reveal">
+          <div class="partner-logo" data-name="YARWARD"><img src="assets/images/yarward.png" alt="YARWARD" loading="lazy" onload="this.parentElement.dataset.loaded=''" onerror="this.style.display='none'" /></div>
+          <div class="partner-flag"><i class="fa-solid fa-circle"></i> China</div>
+          <h4>YARWARD Electronics</h4>
+          <p>Life-safety electronics &mdash; Shandong</p>
+        </a>
+        <a href="brands/honeywell.html" class="partner-card reveal">
+          <div class="partner-logo" data-name="HONEYWELL"><img src="assets/images/honeywell.png" alt="HONEYWELL" loading="lazy" onload="this.parentElement.dataset.loaded=''" onerror="this.style.display='none'" /></div>
+          <div class="partner-flag"><i class="fa-solid fa-circle"></i> USA</div>
+          <h4>HONEYWELL</h4>
+          <p>Building &amp; safety technology &mdash; North Carolina</p>
+        </a>
+        <a href="brands/system-sensor.html" class="partner-card reveal">
+          <div class="partner-logo" data-name="SYSTEM SENSOR"><img src="assets/images/systemsensor.webp" alt="System Sensor" loading="lazy" onload="this.parentElement.dataset.loaded=''" onerror="this.style.display='none'" /></div>
+          <div class="partner-flag"><i class="fa-solid fa-circle"></i> USA</div>
+          <h4>SYSTEM SENSOR</h4>
+          <p>Notification &amp; detection devices</p>
+        </a>
+        <a href="brands/morley-ias.html" class="partner-card reveal">
+          <div class="partner-logo" data-name="MORLEY-IAS"><img src="assets/images/morleyias.jpg" alt="Morley-IAS" loading="lazy" onload="this.parentElement.dataset.loaded=''" onerror="this.style.display='none'" /></div>
+          <div class="partner-flag"><i class="fa-solid fa-circle"></i> England</div>
+          <h4>MORLEY-IAS Fire Systems</h4>
+          <p>Addressable fire alarm platforms</p>
+        </a>
+        <a href="brands/teledata.html" class="partner-card reveal">
+          <div class="partner-logo" data-name="TELEDATA"><img src="assets/images/teledataone.jpg" alt="TELEDATA ONE" loading="lazy" onload="this.parentElement.dataset.loaded=''" onerror="this.style.display='none'" /></div>
+          <div class="partner-flag"><i class="fa-solid fa-circle"></i> Italy</div>
+          <h4>TELEDATA ONE</h4>
+          <p>Fire &amp; security systems &mdash; Milan</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROJECTS ==================== -->
+  <section class="section section-tinted" id="projects">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">Selected Projects</span>
+        <h2 class="section-title">From iconic high-rises to industrial plants.</h2>
+        <p class="section-sub">A snapshot of where our systems are quietly keeping people safe every day.</p>
+      </div>
+
+      <!-- Project category tabs -->
+      <div class="proj-tabs reveal" id="projTabs">
+        <button class="proj-tab is-active" data-tab="fdas">Fire Alarm (FDAS)</button>
+        <button class="proj-tab" data-tab="bus">Busduct</button>
+        <button class="proj-tab" data-tab="cctv">CCTV</button>
+        <button class="proj-tab" data-tab="pa">PA / BGM</button>
+        <button class="proj-tab" data-tab="leelen">Entryphone</button>
+        <button class="proj-tab" data-tab="ongoing">On-Going</button>
+      </div>
+
+      <!-- FDAS -->
+      <div class="proj-panel is-active" data-panel="fdas">
+        <div class="proj-grid">
+          <div class="proj-item reveal"><i class="fa-solid fa-building"></i> Metrobank Plaza, Makati</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-building"></i> GT Tower International</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-building"></i> The Columns, Ayala Avenue</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-building"></i> Greenbelt 5</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-building"></i> Solaris One</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-building"></i> Shell Shared Services</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-industry"></i> Yamaha Motors, Lima Land</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-hotel"></i> Tune Hotel Makati &amp; Malate</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-building"></i> Net Lima, BGC</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-building"></i> The Infinity Tower, BGC</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-building"></i> The Icon Plaza</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-hotel"></i> Seda Hotel Davao</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-building"></i> Grand Central Residences</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-building"></i> AeonPrime, Filinvest City</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-building"></i> Avida Serin East / West</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-building"></i> Amaia Steps Altaraza</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-hotel"></i> Seda Lio Hotel, El Nido</div>
+          <div class="proj-item reveal"><i class="fa-solid fa-car"></i> Toyota Alabang</div>
+        </div>
+      </div>
+
+      <!-- Busduct -->
+      <div class="proj-panel" data-panel="bus">
+        <div class="proj-grid">
+          <div class="proj-item"><i class="fa-solid fa-hotel"></i> Raffles &amp; Fairmont Hotel</div>
+          <div class="proj-item"><i class="fa-solid fa-building"></i> The Beaufort East &amp; West Tower</div>
+          <div class="proj-item"><i class="fa-solid fa-building"></i> Net Lima</div>
+          <div class="proj-item"><i class="fa-solid fa-hotel"></i> Lancaster Hotel</div>
+          <div class="proj-item"><i class="fa-solid fa-building"></i> Ocean Tower</div>
+          <div class="proj-item"><i class="fa-solid fa-building"></i> World Trade Binondo Manila</div>
+          <div class="proj-item"><i class="fa-solid fa-building"></i> Avida New Manila Tower 1</div>
+          <div class="proj-item"><i class="fa-solid fa-building"></i> Avida Sucat Tower 3 &amp; 4</div>
+          <div class="proj-item"><i class="fa-solid fa-building"></i> Bayview Int'l Tower</div>
+          <div class="proj-item"><i class="fa-solid fa-building"></i> PS Bank HQ</div>
+          <div class="proj-item"><i class="fa-solid fa-building"></i> One Campus Place</div>
+          <div class="proj-item"><i class="fa-solid fa-building"></i> Robinson's Cybergate</div>
+          <div class="proj-item"><i class="fa-solid fa-building"></i> JP Morgan, Net Plaza</div>
+        </div>
+      </div>
+
+      <!-- CCTV -->
+      <div class="proj-panel" data-panel="cctv">
+        <div class="proj-grid">
+          <div class="proj-item"><i class="fa-solid fa-video"></i> The Infinity Tower, BGC</div>
+          <div class="proj-item"><i class="fa-solid fa-video"></i> The Icon Plaza</div>
+          <div class="proj-item"><i class="fa-solid fa-video"></i> Seda BGC Expansion</div>
+          <div class="proj-item"><i class="fa-solid fa-video"></i> Finance Center, BGC</div>
+          <div class="proj-item"><i class="fa-solid fa-video"></i> Seda Lio Hotel, El Nido</div>
+          <div class="proj-item"><i class="fa-solid fa-video"></i> Tune Hotel Makati &amp; Malate</div>
+          <div class="proj-item"><i class="fa-solid fa-video"></i> Avida Turf T1 &amp; T2</div>
+          <div class="proj-item"><i class="fa-solid fa-video"></i> World Plaza</div>
+          <div class="proj-item"><i class="fa-solid fa-video"></i> Oilink Bataan Depot</div>
+          <div class="proj-item"><i class="fa-solid fa-video"></i> Seda Nuvali, Sta. Rosa</div>
+          <div class="proj-item"><i class="fa-solid fa-video"></i> Nestle Philippines, Bacolod</div>
+        </div>
+      </div>
+
+      <!-- PA/BGM -->
+      <div class="proj-panel" data-panel="pa">
+        <div class="proj-grid">
+          <div class="proj-item"><i class="fa-solid fa-volume-high"></i> Claret School Q.C.</div>
+          <div class="proj-item"><i class="fa-solid fa-volume-high"></i> Trinoma Mall</div>
+          <div class="proj-item"><i class="fa-solid fa-volume-high"></i> Icon Plaza</div>
+          <div class="proj-item"><i class="fa-solid fa-volume-high"></i> The Infinity</div>
+          <div class="proj-item"><i class="fa-solid fa-volume-high"></i> Celadon Tower</div>
+        </div>
+      </div>
+
+      <!-- Leelen -->
+      <div class="proj-panel" data-panel="leelen">
+        <div class="proj-grid">
+          <div class="proj-item"><i class="fa-solid fa-phone"></i> The Infinity Tower, BGC</div>
+          <div class="proj-item"><i class="fa-solid fa-phone"></i> The Icon Plaza</div>
+          <div class="proj-item"><i class="fa-solid fa-phone"></i> Seda Hotel Davao</div>
+          <div class="proj-item"><i class="fa-solid fa-phone"></i> Grand Central Residences</div>
+          <div class="proj-item"><i class="fa-solid fa-phone"></i> AeonPrime</div>
+          <div class="proj-item"><i class="fa-solid fa-phone"></i> Net Lima Taguig</div>
+          <div class="proj-item"><i class="fa-solid fa-phone"></i> The Hub at Greenfield District</div>
+          <div class="proj-item"><i class="fa-solid fa-phone"></i> Avida Serin East</div>
+          <div class="proj-item"><i class="fa-solid fa-phone"></i> The Varsun Plaza Makati</div>
+          <div class="proj-item"><i class="fa-solid fa-phone"></i> Toyota Alabang</div>
+          <div class="proj-item"><i class="fa-solid fa-phone"></i> Amaia Steps Altaraza</div>
+          <div class="proj-item"><i class="fa-solid fa-phone"></i> Seda Lio Hotel</div>
+          <div class="proj-item"><i class="fa-solid fa-phone"></i> The Levels &amp; Celadon Tower 3</div>
+        </div>
+      </div>
+
+      <!-- Ongoing -->
+      <div class="proj-panel" data-panel="ongoing">
+        <div class="proj-grid">
+          <div class="proj-item"><i class="fa-solid fa-circle-play"></i> Amaia Clara Pasig &mdash; FDAS</div>
+          <div class="proj-item"><i class="fa-solid fa-circle-play"></i> T-One Residences &mdash; Auxiliary</div>
+          <div class="proj-item"><i class="fa-solid fa-circle-play"></i> Nuvali Technohub &mdash; CCTV &amp; Electrical</div>
+          <div class="proj-item"><i class="fa-solid fa-circle-play"></i> CBP Flats &mdash; Electrical &amp; CCTV</div>
+          <div class="proj-item"><i class="fa-solid fa-circle-play"></i> Avida Towers Riala T5 &mdash; Electrical</div>
+          <div class="proj-item"><i class="fa-solid fa-circle-play"></i> Anchor Grandsuites &mdash; Auxiliary &amp; CCTV</div>
+          <div class="proj-item"><i class="fa-solid fa-circle-play"></i> Zadia Phase 3 &mdash; FDAS</div>
+          <div class="proj-item"><i class="fa-solid fa-circle-play"></i> Avida Ardane &mdash; FDAS</div>
+          <div class="proj-item"><i class="fa-solid fa-circle-play"></i> Hop-Inn North EDSA &mdash; FDAS</div>
+          <div class="proj-item"><i class="fa-solid fa-circle-play"></i> Hop-Inn Iloilo &mdash; FDAS</div>
+          <div class="proj-item"><i class="fa-solid fa-circle-play"></i> Hop-Inn Davao &mdash; FDAS</div>
+          <div class="proj-item"><i class="fa-solid fa-circle-play"></i> Avida Serin East T3 &mdash; Electrical &amp; FDAS</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WHY CHOOSE US ==================== -->
+  <section class="section section-light" id="why">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">Why Choose CRI</span>
+        <h2 class="section-title">Reliability isn't a slogan &mdash; it's our track record.</h2>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <i class="fa-solid fa-medal why-icon"></i>
+          <h3>37+ Years of Experience</h3>
+          <p>From Robust Electric Distributors in 1988 to CRI today &mdash; a continuous, evolving track record.</p>
+        </div>
+        <div class="why-card reveal">
+          <i class="fa-solid fa-user-tie why-icon"></i>
+          <h3>PRC-Licensed Engineers</h3>
+          <p>Operations led by registered electrical engineers, each assigned to dedicated projects.</p>
+        </div>
+        <div class="why-card reveal">
+          <i class="fa-solid fa-handshake why-icon"></i>
+          <h3>Exclusive Distributorships</h3>
+          <p>Direct access to Hochiki, Amperes, Davis, Leelen, and other world-class manufacturers.</p>
+        </div>
+        <div class="why-card reveal">
+          <i class="fa-solid fa-trophy why-icon"></i>
+          <h3>Tier-1 Client Roster</h3>
+          <p>Ayala, Filinvest, Robinson's, JP Morgan, Yamaha, Nestlé, Shell, Toyota and more.</p>
+        </div>
+        <div class="why-card reveal">
+          <i class="fa-solid fa-clipboard-check why-icon"></i>
+          <h3>Full Accreditation</h3>
+          <p>SEC-registered, BIR-compliant, PCAB Regular Contractor's License holder.</p>
+        </div>
+        <div class="why-card reveal">
+          <i class="fa-solid fa-headset why-icon"></i>
+          <h3>Lifecycle Support</h3>
+          <p>From supply and installation to preventive maintenance &mdash; one partner, one accountable team.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT ==================== -->
+  <section class="section section-dark" id="contact">
+    <div class="contact-glow contact-glow-1" aria-hidden="true"></div>
+    <div class="contact-glow contact-glow-2" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag section-tag-light">Get in Touch</span>
+        <h2 class="section-title section-title-light">Let's build something safer together.</h2>
+        <p class="section-sub section-sub-light">Reach our sales and engineering team directly &mdash; we typically reply within one business day.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact info card -->
+        <div class="contact-info reveal">
+          <div class="contact-row">
+            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <h4>Office &amp; Warehouse</h4>
+              <p>3B 105 Calamba St., Sta. Mesa Heights,<br />Brgy. Lourdes, Quezon City, Philippines</p>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <h4>Telephone</h4>
+              <p>(632) 8711-1780 to 83<br />(632) 8740-5758</p>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+            <div>
+              <h4>Mobile</h4>
+              <p>
+                +63 917 813 3350 · +63 932 843 9993<br />
+                +63 999 883 3318 · +63 917 859 2716 · +63 925 788 0722
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <h4>Email</h4>
+              <p>
+                <a href="mailto:sales@crobust.com">sales@crobust.com</a><br />
+                <a href="mailto:gigi.crobust@gmail.com">gigi.crobust@gmail.com</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+            <div>
+              <h4>Website</h4>
+              <p><a href="https://www.crobust.com" target="_blank" rel="noopener">www.crobust.com</a></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact form (static — no backend) -->
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <!-- Honeypot: hidden from real users; bots fill it and get silently blocked -->
+          <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+            <label>Leave this empty <input type="text" name="_hp" tabindex="-1" autocomplete="off"></label>
+          </div>
+          <h3>Send us a message</h3>
+          <p class="form-note">Tell us about your project &mdash; we'll get back to you with a tailored proposal.</p>
+
+          <div class="form-row">
+            <label>
+              <span>Full Name</span>
+              <input type="text" name="name" required placeholder="Juan Dela Cruz" />
+            </label>
+            <label>
+              <span>Company</span>
+              <input type="text" name="company" placeholder="ABC Developer Corp." />
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" required placeholder="you@company.com" />
+            </label>
+            <label>
+              <span>Phone</span>
+              <input type="tel" name="phone" placeholder="+63 9xx xxx xxxx" />
+            </label>
+          </div>
+
+          <label>
+            <span>Service Interested In</span>
+            <select name="service">
+              <option>Fire Detection &amp; Alarm Systems (FDAS)</option>
+              <option>CCTV &amp; Surveillance</option>
+              <option>Electrical Works / Busduct</option>
+              <option>Auxiliary / ELV Systems</option>
+              <option>PA / BGM</option>
+              <option>Preventive Maintenance</option>
+              <option>Other / Multiple</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Project Details</span>
+            <textarea name="message" rows="4" required placeholder="Briefly describe your project, location, and timeline..."></textarea>
+          </label>
+
+          <div class="g-recaptcha" data-sitekey="6LciJv8sAAAAAKlvt_x9iM4Um5DE6PjZ3qr9sX96" style="margin-bottom:16px;"></div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            Send Message <i class="fa-solid fa-paper-plane"></i>
+          </button>
+          <p class="form-status" id="formStatus" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="CRI logo" />
+        <h4>Consolidated Robust Inc.</h4>
+        <p>Importer · Wholesaler · Retailer · Services · Maintenance · Installation</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#partners">Partners</a>
+        <a href="#projects">Projects</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>Solutions</h5>
+        <a href="#services">FDAS</a>
+        <a href="#services">CCTV</a>
+        <a href="#services">Electrical</a>
+        <a href="#services">Auxiliary</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>Reach Us</h5>
+        <a href="tel:+6387111780"><i class="fa-solid fa-phone"></i> (632) 8711-1780</a>
+        <a href="mailto:sales@crobust.com"><i class="fa-solid fa-envelope"></i> sales@crobust.com</a>
+        <a href="#contact"><i class="fa-solid fa-location-dot"></i> Quezon City, PH</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> Consolidated Robust Inc. All rights reserved.</p>
+      <p class="footer-legal">SEC Registered · PCAB Licensed · BIR Registered &nbsp;&middot;&nbsp; <a href="privacy-policy.html" style="color:inherit;text-decoration:underline;">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="terms.html" style="color:inherit;text-decoration:underline;">Terms of Service</a></p>
+    </div>
+  </footer>
+
+  <!-- Back-to-top button -->
+  <button class="to-top" id="toTop" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Our JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

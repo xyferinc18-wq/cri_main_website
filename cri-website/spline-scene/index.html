@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spline Scene</title>
+
+  <!--
+    CSP via meta tag — takes precedence over any server header.
+    'unsafe-eval' is required by spline-viewer's new Function() bootstrap.
+    This meta CSP cannot be overridden by parent .htaccess on GoDaddy.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob:
+      https://unpkg.com
+      https://static.cloudflareinsights.com;
+    script-src-elem 'self' 'unsafe-inline' blob:
+      https://unpkg.com
+      https://static.cloudflareinsights.com;
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data: blob: https:;
+    connect-src 'self' blob:
+      https://unpkg.com
+      https://prod.spline.design
+      https://*.spline.design
+      https://static.cloudflareinsights.com
+      https://cloudflareinsights.com
+      https://www.gstatic.com;
+    worker-src 'self' blob: https://unpkg.com;
+    object-src 'none';
+  ">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: transparent;
+    }
+    .spline-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      clip-path: inset(0px 0px 14px 0px);
+    }
+    #scroll-interceptor {
+      position: absolute;
+      inset: 0;
+      z-index: 9999;
+      background: transparent;
+    }
+    spline-viewer {
+      width: 100%;
+      height: calc(100% + 14px);
+      display: block;
+      background: transparent !important;
+      --spline-viewer-bg: transparent !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="spline-wrap">
+    <spline-viewer
+      url="scene.splinecode"
+      background="transparent">
+    </spline-viewer>
+    <div id="scroll-interceptor"></div>
+  </div>
+
+  <!-- Load viewer AFTER the element so it upgrades immediately -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+  <script>
+    const hideSplineWatermark = () => {
+      const viewer = document.querySelector('spline-viewer');
+      if (!viewer || !viewer.shadowRoot) return false;
+      const style = document.createElement('style');
+      style.textContent = `#logo, #hints { display: none !important; visibility: hidden !important; opacity: 0 !important; }`;
+      viewer.shadowRoot.appendChild(style);
+      const logo = viewer.shadowRoot.querySelector('#logo');
+      const hints = viewer.shadowRoot.querySelector('#hints');
+      if (logo) logo.style.display = 'none';
+      if (hints) hints.style.display = 'none';
+      return true;
+    };
+
+    const installWatermarkObserver = () => {
+      if (hideSplineWatermark()) return;
+      const observer = new MutationObserver(() => {
+        if (hideSplineWatermark()) observer.disconnect();
+      });
+      observer.observe(document, { childList: true, subtree: true });
+    };
+
+    const interceptor = document.getElementById('scroll-interceptor');
+    interceptor.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      try { window.parent.scrollBy({ top: e.deltaY, left: e.deltaX, behavior: 'auto' }); } catch (_) {}
+    }, { passive: false });
+
+    if (window.customElements && customElements.whenDefined) {
+      customElements.whenDefined('spline-viewer').then(() => {
+        installWatermarkObserver();
+      });
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      installWatermarkObserver();
+    });
+    window.addEventListener('load', () => {
+      installWatermarkObserver();
+    });
+    setTimeout(() => {
+      installWatermarkObserver();
+    }, 2000);
+  </script>
+</body>
+</html>

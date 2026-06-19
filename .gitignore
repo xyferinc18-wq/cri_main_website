@@ -1,0 +1,5 @@
+# Local secrets — never commit these
+secret.local.php
+**/secret.local.php
+.env
+*.local.env

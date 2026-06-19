@@ -1,0 +1,38 @@
+<!--
+  ================================================================
+  SPLINE CUBE — EMBED SNIPPET
+  - No background (transparent) — blends with your hero section
+  - Watermark cropped out via clip-path
+  - Paste the CSS, the div, and the script into your page
+  ================================================================
+-->
+
+<style>
+  .spline-container {
+    position: relative;
+    width: 100%;
+    height: 600px;           /* match your hero height */
+    clip-path: inset(0px 0px 60px 0px); /* hides watermark */
+    overflow: visible;
+    background: transparent !important;
+  }
+
+  .spline-container spline-viewer {
+    width: 100%;
+    height: calc(100% + 60px); /* compensates for bottom crop */
+    display: block;
+    background: transparent !important;
+    --spline-viewer-bg: transparent !important;
+  }
+</style>
+
+<!-- Place this in your hero section where you want the cube -->
+<div class="spline-container">
+  <spline-viewer
+    url="/spline-scene/scene.splinecode"
+    background="transparent">
+  </spline-viewer>
+</div>
+
+<!-- Paste once before </body> on every page using the scene -->
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>

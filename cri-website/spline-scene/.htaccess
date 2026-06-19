@@ -1,0 +1,22 @@
+# =====================================================================
+# spline-scene/.htaccess
+# CSP is intentionally handled via <meta> in index.html, NOT here.
+# Server headers from the parent .htaccess stack/override on GoDaddy,
+# making it impossible to relax 'unsafe-eval' via .htaccess alone.
+# The <meta http-equiv="Content-Security-Policy"> in index.html is the
+# only reliable way to give this iframe its own permissive policy.
+# =====================================================================
+
+# Correct MIME type so Apache doesn't refuse to serve the binary
+<IfModule mod_mime.c>
+  AddType application/octet-stream .splinecode
+</IfModule>
+
+<IfModule mod_headers.c>
+  # CORS — spline-viewer fetches scene.splinecode via fetch()
+  <FilesMatch "\.splinecode$">
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, OPTIONS"
+    Header always set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- CRI triangle mark — dark navy badge, no white background -->
+
+  <!-- Dark navy rounded square background (like an app icon) -->
+  <rect width="100" height="100" rx="18" fill="#09122f"/>
+
+  <!-- Triangle in white -->
+  <path d="M50 12 L86 86 L14 86 Z" fill="white"/>
+
+  <!-- Ribbon sweep arc 1 — dark navy cuts through triangle -->
+  <path d="M20 72 Q50 40 80 58" stroke="#09122f" stroke-width="11" fill="none" stroke-linecap="round"/>
+
+  <!-- Ribbon sweep arc 2 — softer echo -->
+  <path d="M14 80 Q47 48 82 66" stroke="#09122f" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Lower-left accent piece (matches original logo) -->
+  <path d="M14 86 L28 86 L20 74 Z" fill="#09122f"/>
+</svg>

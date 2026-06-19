@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Block any private folders (none for now, but good practice)
+Disallow: /assets/images/private/

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60">
+  <!-- Grey accent bars (left of Teledata text) -->
+  <rect x="4" y="18" width="16" height="4" rx="2" fill="#aaa"/>
+  <rect x="4" y="26" width="12" height="4" rx="2" fill="#ccc"/>
+  <rect x="4" y="34" width="8" height="4" rx="2" fill="#ddd"/>
+  <!-- Teledata text -->
+  <text x="28" y="40" font-family="'Arial', sans-serif" font-size="26" font-weight="300" fill="#777" text-anchor="start" letter-spacing="-0.3">Teledata</text>
+  <!-- Red circle -->
+  <circle cx="188" cy="30" r="26" fill="#E30613"/>
+  <!-- "one" text inside circle -->
+  <text x="188" y="37" font-family="'Arial', sans-serif" font-size="16" font-weight="700" fill="white" text-anchor="middle">one</text>
+</svg>

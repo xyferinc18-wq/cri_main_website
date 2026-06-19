@@ -1,0 +1,82 @@
+# =====================================================================
+# CONSOLIDATED ROBUST INC. — Apache .htaccess
+# GoDaddy shared hosting (cPanel + Apache)
+# NOTE: <Location>, <LocationMatch>, <Directory> blocks are NOT allowed
+#       in .htaccess on GoDaddy shared hosting — Apache will 500.
+# =====================================================================
+
+# ----- Force HTTPS -----
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+DirectoryIndex index.html
+Options -Indexes
+
+# =====================================================================
+# GZIP COMPRESSION
+# =====================================================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml font/woff2
+</IfModule>
+
+# =====================================================================
+# BROWSER CACHING
+# =====================================================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg             "access plus 1 year"
+  ExpiresByType image/png              "access plus 1 year"
+  ExpiresByType image/gif              "access plus 1 year"
+  ExpiresByType image/webp             "access plus 1 year"
+  ExpiresByType image/svg+xml          "access plus 1 year"
+  ExpiresByType image/x-icon           "access plus 1 year"
+  ExpiresByType text/css               "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/javascript        "access plus 1 month"
+  ExpiresByType font/woff              "access plus 1 year"
+  ExpiresByType font/woff2             "access plus 1 year"
+  ExpiresByType text/html              "access plus 1 hour"
+  ExpiresDefault                       "access plus 1 week"
+</IfModule>
+
+# =====================================================================
+# SECURITY HEADERS
+# =====================================================================
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+  # X-Frame-Options intentionally OMITTED here — it is set per-directory
+  # in each subdirectory's own .htaccess instead, so spline-scene/ can
+  # unset it without a <LocationMatch> block (which 500s on GoDaddy).
+
+  # CSP for the main site
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: https://www.google.com https://www.gstatic.com https://cdnjs.cloudflare.com https://unpkg.com https://static.cloudflareinsights.com; script-src-elem 'self' 'unsafe-inline' blob: https://www.google.com https://www.gstatic.com https://cdnjs.cloudflare.com https://unpkg.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; frame-src 'self' https://www.google.com; connect-src 'self' blob: https://www.google.com https://www.gstatic.com https://unpkg.com https://prod.spline.design https://*.spline.design https://static.cloudflareinsights.com https://cloudflareinsights.com; worker-src 'self' blob: https://unpkg.com; object-src 'none';"
+</IfModule>
+
+# =====================================================================
+# CORRECT MIME TYPES
+# =====================================================================
+<IfModule mod_mime.c>
+  AddType image/svg+xml          .svg
+  AddType image/webp             .webp
+  AddType font/woff              .woff
+  AddType font/woff2             .woff2
+  AddType application/javascript .js
+  AddType text/css               .css
+</IfModule>
+
+# =====================================================================
+# PHP SETTINGS
+# =====================================================================
+<IfModule mod_php.c>
+  php_flag display_errors Off
+  php_value upload_max_filesize 8M
+  php_value post_max_size 10M
+</IfModule>
